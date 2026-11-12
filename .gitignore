@@ -1,0 +1,8 @@
+# downloaded model and results from running the notebook
+models/
+notebooks/models/
+results/
+notebooks/results/
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store

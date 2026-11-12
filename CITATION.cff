@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you reuse this teaching material, please cite it as below."
+title: "PCNtoolkit demo: transfer a pretrained normative model"
+type: software
+authors:
+  - family-names: Tsilimparis
+    given-names: Konstantinos
+    affiliation: "Donders Institute, Radboud University Medical Center"
+date-released: 2026-11-20
+version: "1.0.0"
+license: GPL-3.0-only
+repository-code: "https://github.com/predictive-clinical-neuroscience/PCNtoolkit-demo-transfer"
+url: "https://predictive-clinical-neuroscience.github.io/PCNtoolkit-demo-transfer/"
+keywords:
+  - normative modelling
+  - transfer learning
+  - PCNtoolkit
+  - neuroimaging
+references:
+  - type: software
+    title: PCNtoolkit
+    repository-code: "https://github.com/predictive-clinical-neuroscience/PCNtoolkit"
