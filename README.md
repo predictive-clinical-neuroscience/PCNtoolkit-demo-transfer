@@ -8,7 +8,7 @@ You have scans from one site and want a Z-score for every person: how far is the
 
 | | |
 |---|---|
-| **Web app** | [Borrow or build?](https://predictive-clinical-neuroscience.github.io/PCNtoolkit-demo-transfer/): change the number of controls (5–60) and the split, switch between your own model and transfer |
+| **Web app** | [Borrow or build?](https://predictive-clinical-neuroscience.github.io/PCNtoolkit-demo-transfer/): change the number of controls (5–60) and the `random_state` of the split, switch between your own model and transfer |
 | **Notebook** | [`notebooks/transfer_icbm.ipynb`](notebooks/transfer_icbm.ipynb) · [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/predictive-clinical-neuroscience/PCNtoolkit-demo-transfer/blob/main/notebooks/transfer_icbm.ipynb) |
 | **Slides** | [`slides/`](slides/) (PDF, including the PCNportal walkthrough) |
 | **Data** | [`data/icbm_fcon1000.csv`](data/icbm_fcon1000.csv): the 85 ICBM participants, all FreeSurfer measures |
@@ -16,16 +16,16 @@ You have scans from one site and want a Z-score for every person: how far is the
 
 ## What you will see
 
-With 20 healthy controls (split 1, as on the slides), scored on the 65 people neither model has seen:
+With 20 healthy controls, picked with `NormData.train_test_split(splits=(0.24, 0.76), random_state=0)` as on the slides, scored on the 65 people neither model has seen:
 
 | | outside \|Z\| > 2 (should be ~5%) | MACE (0 = perfect) |
 |---|---|---|
-| fit on my site only | 15.4% | 0.139 |
-| transfer the 67K model | 12.3% | 0.103 |
+| fit on my site only | 15.4% | 0.097 |
+| transfer the 67K model | 7.7% | 0.097 |
 
 Without transfer, 37% of these healthy people would have \|Z\| > 2: ICBM measures this region thinner than the sites in the 67K model.
 
-The bigger difference is the age curve. Fitted on 20 people, your own model is almost flat across age; the transferred model keeps the decline with age it learned from 67,000 people. With very few controls (5) transfer breaks, because it estimates each sex's spread from 2–3 people; from about 30 controls the scores of both models converge. The web app shows all of this, averaged over 8 splits.
+The bigger difference is the age curve. Fitted on 20 people, your own model is almost flat across age; the transferred model keeps the decline with age it learned from 67,000 people. With very few controls (5) transfer breaks, because it estimates each sex's spread from 2–3 people; from about 30 controls the scores of both models converge. The web app shows all of this, averaged over 8 splits (8 values of `random_state`).
 
 ## Run the notebook
 
