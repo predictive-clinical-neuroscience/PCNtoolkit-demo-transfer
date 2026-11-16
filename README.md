@@ -15,4 +15,4 @@ Material from the PCNtoolkit hands-on at the [Donders (f)MRI Toolkit](https://ww
 - PCNtoolkit: see https://pcntoolkit.readthedocs.io/en/stable/getting_started/citing.html
 - This material: see [CITATION.cff](CITATION.cff). Code is GPL-3.0 (as PCNtoolkit, see [LICENSE](LICENSE)); slides and text are CC BY 4.0.
 
-Questions: [NeuroStars, tag pcntoolkit](https://neurostars.org/tag/pcntoolkit) · [PCNtoolkit issues](https://github.com/predictive-clinical-neuroscience/PCNtoolkit/issues)
+Questions: [NeuroStars](https://neurostars.org/tag/pcntoolkit) · [PCNtoolkit issues](https://github.com/predictive-clinical-neuroscience/PCNtoolkit/issues)
