@@ -2,45 +2,13 @@
 
 Material from the PCNtoolkit hands-on at the [Donders (f)MRI Toolkit](https://www.ru.nl/en/donders-institute/agenda/donders-fmri-toolkit), 20 November 2026.
 
-You have scans from one site and want a Z-score for every person: how far is their brain measure from what is normal for their age? You can **fit your own normative model** on your healthy controls, or **transfer** a model the PCN lab already trained on 67,000 people from 89 sites. This repo compares both on real data.
-
-**Example used throughout:** the ICBM site of the open FCON1000 dataset (85 healthy adults, ages 19–85), cortical thickness of the left precentral gyrus, and the pretrained model `BLRw_ct_DES_lifespan_67K_89sites`.
-
 | | |
 |---|---|
-| **Web app** | [Fit or transfer?](https://predictive-clinical-neuroscience.github.io/PCNtoolkit-demo-transfer/): change the number of controls (5–60) and the adaptation/test split, switch between fitting your own model and transfer |
+| **Web app** | [Fit or transfer on a small dataset](https://predictive-clinical-neuroscience.github.io/PCNtoolkit-demo-transfer/): change the number of controls (5–60) and the adaptation/test split, switch between fit and transfer |
 | **Notebook** | [`notebooks/transfer_icbm.ipynb`](notebooks/transfer_icbm.ipynb) · [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/predictive-clinical-neuroscience/PCNtoolkit-demo-transfer/blob/main/notebooks/transfer_icbm.ipynb) |
 | **Slides** | [`slides/`](slides/) (PDF, including the PCNportal walkthrough) |
 | **Data** | [`data/icbm_fcon1000.csv`](data/icbm_fcon1000.csv): the 85 ICBM participants, all FreeSurfer measures |
 | **PCNportal files** | [`data/pcnportal/`](data/pcnportal/): the same 20 controls (adaptation) and 65 test participants, in PCNportal's template format |
-
-## What you will see
-
-With 20 healthy controls, picked with `NormData.train_test_split(splits=(0.24, 0.76), random_state=5)` as on the slides, scored on the 65 people neither model has seen:
-
-| | outside \|Z\| > 2 (should be ~5%) | MACE (0 = perfect) |
-|---|---|---|
-| fit on my site only | 24.6% | 0.077 |
-| transfer the 67K model | 10.8% | 0.048 |
-
-Without transfer, 32% of these healthy people would have \|Z\| > 2: ICBM measures this region thinner than the sites in the 67K model.
-
-The bigger difference is the age curve. Fitted on 20 people, your own model is flat across age and shoots off above 70, where it has no controls; the transferred model keeps the decline with age it learned from 67,000 people. This is one random draw of 20 controls, and scores depend a lot on the draw. The web app shows 50 draws for each number of controls (draw 1 is `random_state=5`, draws 2–50 are `random_state` 0–49 without 5), next to the range a perfect model would get by chance. With 5–20 controls, your own model's scores scatter widely from draw to draw and transfer's much less; from about 40 controls both mostly land where a perfect model would.
-
-**Sex.** To keep the demo simple, the web app and the main part of the notebook ignore sex. In ICBM, women's precentral cortex is thicker than men's, so this gives healthy men slightly negative and healthy women slightly positive Z-scores on average. The last section of the notebook adds sex back and shows the trade-off: less bias, but with few controls per sex, noisier Z-scores. In your own study, model sex. PCNportal always does.
-
-## Run the notebook
-
-- **Colab:** click the badge above. The first cell installs `pcntoolkit==1.4.0`; restart the session if Colab asks.
-- **Locally:** `pip install pcntoolkit==1.4.0` (or `conda`, see the [PCNtoolkit docs](https://pcntoolkit.readthedocs.io/en/latest/)), then open the notebook in Jupyter.
-
-The notebook downloads the 67K model (~4 MB) from the lab's [SURFdrive share](https://surfdrive.surf.nl/s/Mb6mZyFmJeCaPcZ?dir=/zip) and loads FCON1000 with `load_fcon1000()`. Change `splits`, `random_state` or `REGION` to explore.
-
-## Use PCNportal instead (no code)
-
-1. Go to [pcnportal.dccn.nl](https://pcnportal.dccn.nl/) › *Compute here!* and choose a cortical thickness (Destrieux) model.
-2. Upload `data/pcnportal/icbm_test.csv` as test data and `data/pcnportal/icbm_adaptation.csv` as adaptation data.
-3. Results arrive by email. Note that the portal's models may differ from the 67K model used here, so numbers can differ slightly.
 
 ## Cite and reuse
 
@@ -51,7 +19,3 @@ The notebook downloads the 67K model (~4 MB) from the lab's [SURFdrive share](ht
 - This material: see [CITATION.cff](CITATION.cff). Code is GPL-3.0 (as PCNtoolkit, see [LICENSE](LICENSE)); slides and text are CC BY 4.0.
 
 Questions: [NeuroStars, tag pcntoolkit](https://neurostars.org/tag/pcntoolkit) · [PCNtoolkit issues](https://github.com/predictive-clinical-neuroscience/PCNtoolkit/issues)
-
-## Maintainers: GitHub Pages
-
-The web app is `docs/index.html`, a single self-contained file. In the repo's *Settings › Pages*, choose *Deploy from a branch*, branch `main`, folder `/docs`. It is then served at `https://<owner>.github.io/PCNtoolkit-demo-transfer/`.
