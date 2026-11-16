@@ -8,7 +8,7 @@ Material from the PCNtoolkit hands-on at the [Donders (f)MRI Toolkit](https://ww
 | **Notebook** | [`notebooks/transfer_icbm.ipynb`](notebooks/transfer_icbm.ipynb) · [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/predictive-clinical-neuroscience/PCNtoolkit-demo-transfer/blob/main/notebooks/transfer_icbm.ipynb) |
 | **Slides** | [`slides/`](slides/) (PDF, including the PCNportal walkthrough) |
 | **Data** | [`data/icbm_fcon1000.csv`](data/icbm_fcon1000.csv): the 85 ICBM participants, all FreeSurfer measures |
-| **PCNportal files** | [`data/pcnportal/`](data/pcnportal/): the same 20 controls (adaptation) and 65 test participants, in PCNportal's template format |
+| **PCNportal files** | [`data/pcnportal/`](data/pcnportal/): the same 20 adaptation subjects as the Collab notebook and 65 test participants, in PCNportal's template format |
 
 ## Cite and reuse
 
