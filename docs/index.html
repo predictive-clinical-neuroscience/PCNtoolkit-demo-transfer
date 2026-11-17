@@ -53,7 +53,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--orange); ou
 
 svg { display: block; width: 100%; height: auto; }
 svg text { font-family: var(--sans); }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-muted); margin-top: 8px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-muted); margin: 0 0 6px; }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
 .legend svg { width: auto; flex: none; }
 
@@ -65,6 +65,8 @@ input[type=range] { width: 100%; accent-color: var(--vermillion); }
 .btn { font: 700 14px/1 var(--sans); padding: 9px 14px; border-radius: 8px; border: 1px solid var(--card-line); background: var(--paper); color: var(--ink); cursor: pointer; }
 .toolbar { display: grid; grid-template-columns: minmax(170px, 220px) minmax(0, 1fr) auto; gap: 14px 24px; align-items: center; margin-bottom: 14px; }
 @media (max-width: 760px) { .toolbar { grid-template-columns: minmax(0, 1fr); } }
+.toolbar.controls { grid-template-columns: minmax(0, 1fr) auto; margin: 12px 0 0; }
+@media (max-width: 760px) { .toolbar.controls { grid-template-columns: minmax(0, 1fr); } }
 .splitbox { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
 .metrics summary { font-size: 13px; font-weight: 700; letter-spacing: 0.9px; text-transform: uppercase; color: var(--ink); cursor: pointer; }
 .metrics[open] summary { margin-bottom: 12px; }
@@ -107,20 +109,21 @@ footer a { color: var(--blue); }
         <button id="own" aria-pressed="true">fit</button>
         <button id="tr" class="tr" aria-pressed="false">transfer</button>
       </div>
+    </div>
+    <div class="legend">
+      <span><svg width="26" height="10" aria-hidden="true"><line x1="0" y1="5" x2="26" y2="5" stroke="#4d4d4d" stroke-width="2.2"/></svg>fit</span>
+      <span><svg width="26" height="10" aria-hidden="true"><line x1="0" y1="5" x2="26" y2="5" stroke="#0072B2" stroke-width="2.2"/></svg>transfer (67K model)</span>
+      <span><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.2" fill="#fff" stroke="#D55E00" stroke-width="1.5"/></svg>adaptation subjects used to fit or transfer</span>
+      <span><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="3.6" fill="#D55E00"/></svg>test subjects</span>
+    </div>
+    <svg id="chart" viewBox="0 0 800 420" role="img" aria-label="Centile curves of left precentral gyrus thickness by age for the ICBM site"></svg>
+    <div class="toolbar controls">
       <div class="ctrl">
-        <div class="ctrl-head"><label for="n">healthy controls</label><output id="nOut" for="n"></output></div>
+        <div class="ctrl-head"><label for="n">adaptation subjects</label><output id="nOut" for="n"></output></div>
         <input id="n" type="range" min="0" max="5" step="1" value="2">
         <div class="ticks" id="ticks" aria-hidden="true"></div>
       </div>
       <div class="splitbox"><label class="split" for="splitSel">adaptation/test split <select id="splitSel"></select> of <span id="nSplits"></span></label><button id="resample" class="btn">new split</button></div>
-    </div>
-    <p class="label" id="chartTitle">centiles</p>
-    <svg id="chart" viewBox="0 0 800 420" role="img" aria-label="Centile curves of left precentral gyrus thickness by age for the ICBM site"></svg>
-    <div class="legend">
-      <span><svg width="26" height="10" aria-hidden="true"><line x1="0" y1="5" x2="26" y2="5" stroke="#4d4d4d" stroke-width="2.2"/></svg>fit</span>
-      <span><svg width="26" height="10" aria-hidden="true"><line x1="0" y1="5" x2="26" y2="5" stroke="#0072B2" stroke-width="2.2"/></svg>transfer (67K model)</span>
-      <span><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.2" fill="#fff" stroke="#D55E00" stroke-width="1.5"/></svg>controls used to fit or transfer</span>
-      <span><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="3.6" fill="#D55E00"/></svg>test subjects</span>
     </div>
   </section>
 
@@ -192,7 +195,6 @@ const DATA = {"rv":"lh_G_precentral_thickness","site":"ICBM","grid":[18.0,18.5,1
     $("own").setAttribute("aria-pressed", st.mode === "own"); $("tr").setAttribute("aria-pressed", st.mode === "transfer");
     $("nOut").textContent = `${n} of ${subj.length}`;
     $("splitSel").value = String(st.seed);
-    $("chartTitle").textContent = st.mode === "own" ? `fit on ${n} controls` : `transfer with ${n} controls`;
 
     const svg = $("chart"); svg.textContent = "";
     const defs = el("defs", {}, svg), cp = el("clipPath", { id: "plot" }, defs);
