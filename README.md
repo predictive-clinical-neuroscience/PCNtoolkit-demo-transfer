@@ -4,10 +4,10 @@ Material from the PCNtoolkit hands-on at the [Donders (f)MRI Toolkit](https://ww
 
 | | |
 |---|---|
-| **Web app** | [Fit or transfer on a small dataset](https://predictive-clinical-neuroscience.github.io/PCNtoolkit-demo-transfer/): change the number of controls (5–60), the adaptation/test split and switch between fit and transfer. Same W-BLR configuration as the notebook; sex is not modelled as batch effect) |
+| **Web app** | [Fit or transfer on a small dataset](https://predictive-clinical-neuroscience.github.io/PCNtoolkit-demo-transfer/): change the number of adaptation subjects, the adaptation/test split and switch between fit and transfer. Same W-BLR configuration as the notebook; sex is not modelled as batch effect. |
 | **Notebook** | [`notebooks/transfer_icbm.ipynb`](notebooks/transfer_icbm.ipynb) · [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/predictive-clinical-neuroscience/PCNtoolkit-demo-transfer/blob/main/notebooks/transfer_icbm.ipynb) |
-| **PCNportal files** | [`data/pcnportal/`](data/pcnportal/): files to use in the PCNportal. It has the same 20 adaptation subjects and 65 test participants as the Collab notebook. The files include sex column so it will modelled as batch effect by PCNportal|
-| **Slides** | [`slides/`](slides/): the slides presented at the fMRI toolkit 2026) |
+| **PCNportal files** | [`data/pcnportal/`](data/pcnportal/): files to use in the PCNportal. It has the same 20 adaptation subjects and 65 test participants as the Collab notebook. The files include sex column so it will modelled as batch effect by PCNportal. |
+| **Slides** | [`slides/`](slides/): the slides presented at the fMRI toolkit 2026. |
 | **Data** | [`data/icbm_fcon1000.csv`](data/icbm_fcon1000.csv): the 85 ICBM participants, all FreeSurfer measures |
 
 ## Cite and reuse
